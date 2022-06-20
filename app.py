@@ -12,6 +12,6 @@ def hello_world():
 @app.route('/fetchTable', methods=["POST"])
 def getData():
     # print(fetch())
-    input_json = request.get_json(force=True)
+    # input_json = request.get_json(force=True)
     dictToReturn = {'data': fetch()}
     return jsonify(dictToReturn)
