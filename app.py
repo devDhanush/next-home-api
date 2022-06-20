@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 from util import fetch
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def hello_world():
@@ -10,6 +12,7 @@ def hello_world():
 
 
 @app.route('/fetchTable', methods=["POST"])
+@cross_origin()
 def getData():
     # print(fetch())
     # input_json = request.get_json(force=True)
