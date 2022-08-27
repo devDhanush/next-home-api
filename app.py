@@ -11,10 +11,21 @@ def hello_world():
     return 'This is my first API call!'
 
 
+@app.route('/login', methods=["POST"])
+def verify():
+    input_json = request.get_json(force=True)
+    print(input_json)
+    data =  fetch("CREDENTIALS",input_json)
+    dictToReturn = {"authenticatedUser": False}
+    if(len(data)>0):
+        dictToReturn = {"authenticatedUser": True}
+    return jsonify(dictToReturn)
+
+
 @app.route('/fetchTable', methods=["POST"])
 @cross_origin()
 def getData():
     # print(fetch())
     # input_json = request.get_json(force=True)
-    dictToReturn = {'data': fetch()}
+    dictToReturn = {'data': fetch("STAYS", None)}
     return jsonify(dictToReturn)

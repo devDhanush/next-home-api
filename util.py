@@ -1,7 +1,7 @@
 import psycopg2
 
 
-def fetch():
+def fetch(dataTable, input):
     # establishing the connection
     conn = psycopg2.connect(
         database="d1mcchg8iig4uf", user='qgopasstjgvbtx',
@@ -16,7 +16,15 @@ def fetch():
     cursor = conn.cursor()
 
     # Retrieving data
-    cursor.execute('''SELECT * from STAYS''')
+    query = '''SELECT * from {0}'''.format(dataTable)
+    if input != None :
+        parameters=input.keys()
+        query = query + ''' where'''
+        for param in parameters:
+            query= query + ''' {0} = '{1}' AND'''.format(param,input[param])
+        query = query[:-4]
+    print("query",query)
+    cursor.execute(query)
     fields = [field_md[0] for field_md in cursor.description]
     result = [dict(zip(fields, row)) for row in cursor.fetchall()]
     # result = cursor.fetchall()
