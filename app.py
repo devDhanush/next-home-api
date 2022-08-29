@@ -7,7 +7,6 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
-
 @app.route('/')
 def hello_world():
     return render_template('loginPage.html')
@@ -17,7 +16,7 @@ def hello_world():
 @cross_origin()
 def verify():
     input_json = request.get_json(force=True)
-    print(input_json)
+    # print(input_json)
     data = fetch("CREDENTIALS", input_json)
     dictToReturn = {"authenticatedUser": False}
     if len(data) == 1:
