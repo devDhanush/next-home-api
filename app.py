@@ -7,6 +7,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
+
 @app.route('/')
 def hello_world():
     return render_template('loginPage.html')
