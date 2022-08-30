@@ -41,7 +41,7 @@ def verify():
     data = fetch("CREDENTIALS", input_json)
     dictToReturn = {"authenticatedUser": False}
     if len(data) == 1:
-        payload = {"dataTable": "credentials", "input": {"isverified": True}, "query": {"email": "ddhanu371@gmail.com"}}
+        payload = {"dataTable": "credentials", "input": {"isverified": True}, "query": {"email": input_json['email']}}
         data = update(payload)
         if data['executedSuccessfully']:
             dictToReturn = {"authenticatedUser": True}
