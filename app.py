@@ -28,7 +28,7 @@ def login():
     # print(input_json)
     data = fetch("CREDENTIALS", input_json)
     dictToReturn = {"authenticatedUser": False}
-    if len(data) == 1 and data[0]['isVerified']:
+    if len(data) == 1 and data[0]['isverified']:
         dictToReturn = {"authenticatedUser": True}
     return jsonify(dictToReturn)
 
